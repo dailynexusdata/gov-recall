@@ -5,8 +5,8 @@ import { axisBottom } from 'd3-axis';
 
 const getPhotoUrl = (person) => {
   const name = person.toLowerCase().replaceAll(' ', '_').replaceAll('"', '');
-  //   return `dist/photos/${name}.jpg`;
-  return `https://github.com/dailynexusdata/gov-recall/blob/main/dist/photos/${name}.jpg?raw=true`;
+  return `dist/photos/${name}.jpg`;
+  //   return `https://github.com/dailynexusdata/gov-recall/blob/main/dist/photos/${name}.jpg?raw=true`;
 };
 
 const makePlot = (data) => {
@@ -137,6 +137,8 @@ const makePlot = (data) => {
     .append('xhtml:img')
     .attr('width', imageSize)
     .attr('height', imageSize)
+    .style('width', `${imageSize}px`)
+    .style('height', `${imageSize}px`)
     .attr('src', (d) => getPhotoUrl(d.name))
     .style('border-radius', '50%');
 
