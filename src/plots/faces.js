@@ -5,8 +5,8 @@ import { axisBottom } from 'd3-axis';
 
 const getPhotoUrl = (person) => {
   const name = person.toLowerCase().replaceAll(' ', '_').replaceAll('"', '');
-  return `dist/photos/${name}.jpg`;
-  //   return `https://github.com/dailynexusdata/gov-recall/blob/main/dist/photos/${name}.jpg?raw=true`;
+  //   return `dist/photos/${name}.jpg`;
+  return `https://github.com/dailynexusdata/gov-recall/blob/main/dist/photos/${name}.jpg?raw=true`;
 };
 
 const makePlot = (data) => {
@@ -57,7 +57,8 @@ const makePlot = (data) => {
     .join('svg')
     .attr('xmlns:xhtml', 'http://www.w3.org/1999/xhtml')
     .attr('id', 'ucsb-as-voting-faces-container')
-    .attr('width', (d) => d.width);
+    .attr('width', (d) => d.width)
+    .attr('height', (d) => d.height);
 
   container
     .append('a')
@@ -67,11 +68,6 @@ const makePlot = (data) => {
       'href',
       'https://countyofsb.org/care/elections/results/2021september14/results-1.htm',
     );
-
-  svg
-    .transition()
-    .duration(resizeDuration)
-    .attr('height', (d) => d.height);
 
   /*
     Create Scales:
@@ -160,8 +156,6 @@ const makePlot = (data) => {
     .style('color', '#adadad')
     .style('font-size', '12pt')
     .attr('class', 'ucsb-as-voting-faces-xaxis')
-    .transition()
-    .duration(resizeDuration)
     .attr('transform', `translate(0, ${size.height - margin.bottom})`)
     .call(
       axisBottom()
