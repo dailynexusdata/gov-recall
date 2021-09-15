@@ -14,7 +14,10 @@ const makePlot = (data) => {
   //     height: 100,
   //     width: Math.min(600, window.innerWidth - 40),
   //   };
-
+  const size = {
+    height: 820 + 30,
+    width: Math.min(600, Math.min(600, window.innerWidth - 40)),
+  };
   //   const margin = {
   //     top: 10,
   //     right: 10,
@@ -35,13 +38,6 @@ const makePlot = (data) => {
   /*
     Container Setup:
   */
-  const size = {
-    height: 820 + 30,
-    width: Math.min(
-      600,
-      select(container.node().parentNode).style('width').slice(0, -2),
-    ),
-  };
 
   // height and width of images
   const imageSize = 40;

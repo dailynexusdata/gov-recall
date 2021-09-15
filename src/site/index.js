@@ -14,9 +14,16 @@ import makeCandidates from '../plots/faces';
 
 (async () => {
   // import data - use csv or json:
-  const cData = await csv('dist/data/candidates.csv');
-  const rData = await csv('dist/data/recall.csv');
+  // const cData = await csv('dist/data/candidates.csv');
+  // const rData = await csv('dist/data/recall.csv');
 
+  const cData = await csv(
+    'https://raw.githubusercontent.com/dailynexusdata/gov-recall/main/dist/data/candidates.csv',
+  );
+
+  const rData = await csv(
+    'https://raw.githubusercontent.com/dailynexusdata/gov-recall/main/dist/data/recall.csv',
+  );
   const resize = () => {
     // call imported plots here:
     // makePLOT_NAME(data);
