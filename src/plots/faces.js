@@ -5,7 +5,8 @@ import { axisBottom } from 'd3-axis';
 
 const getPhotoUrl = (person) => {
   const name = person.toLowerCase().replaceAll(' ', '_').replaceAll('"', '');
-  return `dist/photos/${name}.jpg`;
+  //   return `dist/photos/${name}.jpg`;
+  return `https://github.com/dailynexusdata/gov-recall/blob/main/dist/photos/${name}.jpg?raw=true`;
 };
 
 const makePlot = (data) => {
