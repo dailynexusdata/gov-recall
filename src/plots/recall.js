@@ -23,8 +23,13 @@ const makePlot = (d) => {
   container.selectAll('*').remove();
   container
     .append('h1')
-    .text('Should Gov. Newson be Recalled?')
+    .text('SB County Votes to Not Recall Gov. Newsom')
     .style('font-size', '24px');
+  container
+    .append('p')
+    .text(
+      'Responses to the question of whether Gov. Newsom should be recalled.',
+    );
 
   const el = document.getElementById('laby-gov-recall-result');
 

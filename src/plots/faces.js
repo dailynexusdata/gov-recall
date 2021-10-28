@@ -15,7 +15,7 @@ const makePlot = (data) => {
   //     width: Math.min(600, window.innerWidth - 40),
   //   };
   const size = {
-    height: 820 + 30,
+    height: 450,
     width: Math.min(600, Math.min(600, window.innerWidth - 40)),
   };
   //   const margin = {
@@ -32,7 +32,8 @@ const makePlot = (data) => {
   container.selectAll('*').remove();
   container
     .append('h1')
-    .text('Elder Leads the Replacement Candidates')
+    .attr('fill', '#00002b')
+    .text("SB County's Top Replacement Candidates")
     .style('font-size', '24px');
 
   /*
@@ -63,6 +64,7 @@ const makePlot = (data) => {
   container
     .append('a')
     .style('font-size', '12pt')
+    .attr('fill', '#00002b')
     .text('Source: Santa Barbara County Election Summary Report')
     .attr(
       'href',
@@ -101,14 +103,28 @@ const makePlot = (data) => {
     .attr('x', x(0))
     .attr('y', (d) => y(d.name))
     .attr('width', (d) => x(d.pct) - x(0))
-    .attr('height', imageSize)
-    .attr('fill', '#005AA3');
+    .attr('height', imageSize + 10)
+    .attr('fill', '#4e79a7');
+
+  bars
+    .append('text')
+    .text((d) => `${Math.round(d.pct * 100)}%`)
+    .attr('x', (d) => {
+      if (d.name === 'Write-in') {
+        return x(d.pct) + 5;
+      }
+      return (
+        (d.pct < 0.03 ? x(d.pct) + imageSize : x(d.pct) + imageSize / 2) + 5
+      );
+    })
+    .attr('y', (d) => y(d.name) + 5 + imageSize / 2)
+    .attr('fill', '#adadad');
 
   bars
     .on('mouseenter', (event, d) => {
       svg
         .append('text')
-        .text(`${d.pct * 100}%`)
+        .text(`${Math.round(d.pct * 100)}%`)
         .attr(
           'x',
           d.pct < 0.03 ? x(d.pct) + imageSize + 30 : x(d.pct) + imageSize + 10,
@@ -127,7 +143,7 @@ const makePlot = (data) => {
     .append('foreignObject')
     .filter((d) => d.name !== 'Write-in')
     .attr('x', (d) => (d.pct < 0.03 ? x(d.pct) : x(d.pct) - imageSize / 2))
-    .attr('y', (d) => y(d.name))
+    .attr('y', (d) => y(d.name) + 5)
     .attr('width', imageSize)
     .attr('height', imageSize)
     .append('xhtml:img')
@@ -144,7 +160,8 @@ const makePlot = (data) => {
     .attr('x', x(0))
     .attr('y', (d) => y(d.name) - 3)
     .attr('text-anchor', 'start')
-    .attr('font-size', '11pt');
+    .attr('font-size', '11pt')
+    .attr('fill', '#00002b');
 
   /*
      x-axis
@@ -156,7 +173,7 @@ const makePlot = (data) => {
     .style('color', '#adadad')
     .style('font-size', '12pt')
     .attr('class', 'ucsb-as-voting-faces-xaxis')
-    .attr('transform', `translate(0, ${size.height - margin.bottom})`)
+    .attr('transform', `translate(0, ${size.height - margin.bottom - 10})`)
     .call(
       axisBottom()
         .scale(x)
